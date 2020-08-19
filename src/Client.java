@@ -42,6 +42,7 @@ public class Client extends Application implements Serializable {
         BorderPane mainPane = new BorderPane();
         // Text area to display contents
         TextArea ta = new TextArea();
+        ta.setEditable(false);
         mainPane.setCenter(new ScrollPane(ta));
         mainPane.setTop(gridPane);
 
@@ -54,7 +55,7 @@ public class Client extends Application implements Serializable {
         submitButton.setOnAction(event -> {
             try {
                 // Create a socket to connect to the server
-                Socket socket = new Socket("localhost", 8000);
+                Socket socket = new Socket("localhost", 1337);
                 // Socket socket = new Socket("130.254.204.36", 8000);
                 // Socket socket = new Socket("drake.Armstrong.edu", 8000);
 

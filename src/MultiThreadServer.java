@@ -29,7 +29,7 @@ public class MultiThreadServer extends Application implements Serializable {
     new Thread( () -> {
       try {
         // Create a server socket
-        ServerSocket serverSocket = new ServerSocket(8000);
+        ServerSocket serverSocket = new ServerSocket(1337);
         ta.appendText("MultiThreadServer started at " 
           + new Date() + '\n');
     

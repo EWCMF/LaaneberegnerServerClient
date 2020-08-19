@@ -20,6 +20,7 @@ public class Client2 extends Application implements Serializable {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
 
+        // Lav layout med 3 * 3 GridPane
         GridPane gridPane = new GridPane();
         gridPane.setStyle("-fx-border-color: green");
 
@@ -43,6 +44,7 @@ public class Client2 extends Application implements Serializable {
         BorderPane mainPane = new BorderPane();
         // Text area to display contents
         TextArea ta = new TextArea();
+        ta.setEditable(false);
         mainPane.setCenter(new ScrollPane(ta));
         mainPane.setTop(gridPane);
 
@@ -55,7 +57,7 @@ public class Client2 extends Application implements Serializable {
         submitButton.setOnAction(event -> {
             try {
                 // Create a socket to connect to the server
-                Socket socket = new Socket("localhost", 8000);
+                Socket socket = new Socket("localhost", 1337);
                 // Socket socket = new Socket("130.254.204.36", 8000);
                 // Socket socket = new Socket("drake.Armstrong.edu", 8000);
 
@@ -77,6 +79,7 @@ public class Client2 extends Application implements Serializable {
                 double monthlyPayment = fromServer.readDouble();
                 double totalPayment = fromServer.readDouble();
 
+                // Formater til 2 decimaler.
                 DecimalFormat decimalFormat = new DecimalFormat("#.00");
                 String formattedMonthlyPayment = decimalFormat.format(monthlyPayment);
                 String formattedTotalPayment = decimalFormat.format(totalPayment);
@@ -88,7 +91,7 @@ public class Client2 extends Application implements Serializable {
                 ta.appendText("Received from server: \n");
                 ta.appendText("Monthly Payment: " + formattedMonthlyPayment + "\n");
                 ta.appendText("Total Payment: " + formattedTotalPayment + "\n");
-                
+
             } catch (IOException io) {
                 System.err.println(io);
                 ta.appendText(io.toString() + '\n');
